@@ -1,3 +1,4 @@
+-- global function for different weapon types
 _G.RegisterPlayerWeapon = function(plr, weapontype, register)
 	local SS = game:GetService("ServerStorage")
 	local ammolabel = plr.PlayerGui:WaitForChild("FPSGui").Ammo
@@ -38,6 +39,8 @@ _G.RegisterPlayerWeapon = function(plr, weapontype, register)
 		end
 	end
 end
+
+-- setting up interface when player joins the game
 game.Players.PlayerAdded:Connect(function(plr)
 	wait(5)
 	_G.RegisterPlayerWeapon(plr,"Pistol",true)
