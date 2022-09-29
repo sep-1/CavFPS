@@ -9,3 +9,4 @@ The other files in this repository are the individual scripts that make up the p
 
 This program gives the player a first person interface complete with a functional weapon that is able to be fired, aimed and reloaded. 
 When it comes to firing, there is a completely randomized hip fire algorithm, along with a more accurate aiming option if you hold down the right mouse button.
+There is also ray casting for the bullet based on the player's camera that is able to detect where the bullet lands on a rectangular prism and orient the bullethole decal correctly.
