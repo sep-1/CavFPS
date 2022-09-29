@@ -53,13 +53,13 @@ local function updateArm(key)
 end
 
 
---toggle aim down sights when left click is initiated 
+--toggle aim down sights when right click is pressed down 
 UIS.InputBegan:Connect(function(inputtype,gameprocessedevent)
 	if inputtype.UserInputType == Enum.UserInputType.MouseButton2 then
 		aimDownSights(true)
 	end
 end)
--- end aim down sights when left click is released
+-- end aim down sights when right click is released
 UIS.InputEnded:Connect(function(inputtype, gameprocessedevent)
 	if inputtype.UserInputType == Enum.UserInputType.MouseButton2 then
 		aimDownSights(false)
