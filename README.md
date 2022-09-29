@@ -1,4 +1,4 @@
-# CavFPS
+# First Person Shooter Interface
 An FPS written in Lua with Roblox's API.
 I wrote this program early in high school and updated it infrequently. 
 Looking back, I am glad to see improvement in my skills as a programmer.
