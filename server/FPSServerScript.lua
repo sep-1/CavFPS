@@ -5,7 +5,7 @@ local waistC0 = CFrame.new(0, 0.2, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 local rShoulderC0 = CFrame.new(1, 0.5, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 local lShoulderC0 = CFrame.new(-1, 0.5, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 local ammostorage = game:GetService("ServerStorage"):WaitForChild("AmmoData")
-pcall(function()
+pcall(function() --protected call in case the update event errors
 	lookevent.OnServerEvent:Connect(function(player, theta)
 		local tPart = player.Character:FindFirstChild("tiltPart");
 		if (tPart) then
@@ -13,7 +13,7 @@ pcall(function()
 		end
 	end)
 end)
-
+-- sets up player's weapon on the server side 
 weaponsetup.OnServerEvent:Connect(function(player, weapon)
 	local serverweapon = weapon:Clone()
 	local joint = Instance.new("Motor6D")
@@ -38,7 +38,7 @@ weaponsetup.OnServerEvent:Connect(function(player, weapon)
 	local waist = player.Character.UpperTorso.Waist;
 	local rShoulder = player.Character.RightUpperArm.RightShoulder;
 	local lShoulder = player.Character.LeftUpperArm.LeftShoulder;
-	
+	-- joint updating on the player's body for the viewmodel
 	game:GetService("RunService").Heartbeat:Connect(function(dt)
 		local theta = tiltPart.Position.x;
 		neck.C0 = neckC0 * CFrame.fromEulerAnglesYXZ(theta*0.5, 0, 0);
