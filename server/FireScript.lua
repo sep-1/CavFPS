@@ -4,12 +4,12 @@ local REvent = RS:WaitForChild("REvent")
 local plrs = game:GetService("Players")
 local SS = game:GetService("ServerStorage")
 local debris = game:GetService("Debris")
-_G.weapondata = {
+_G.weapondata = { -- specs for different weapons
 	["pistoldata"] = {["maxdmg"] = 65, ["maxbullets"] = 15},
 	["shotgundata"] = {["maxdmg"] = 28, ["maxbullets"] = 8},
 	["MGdata"] = {}
 }
-
+-- determines which side of a surface the bullet ray lands on
 local function surfacepointer(pointonsurface, part)
 	local rayobjectcf = part.CFrame:PointToObjectSpace(pointonsurface)
 	local Xside = part.Size.X*.5 
@@ -27,7 +27,7 @@ local function surfacepointer(pointonsurface, part)
 end
 
 
-
+-- handles the ray casting and bullet effects on the server
 fireevent.OnServerInvoke = function(plr, camray)
 	local ammodata = SS.AmmoData:FindFirstChild(plr.Name .. "Ammo")
 	local weapontype = ammodata.Weapon.Value
@@ -102,16 +102,17 @@ fireevent.OnServerInvoke = function(plr, camray)
 	ammolabel.Text = ammodata.Value .. " / " .. maxbullets 
 end
 
+-- reloads the weapon
 REvent.OnServerEvent:Connect(function(plr)
 	local ammodata = SS.AmmoData:FindFirstChild(plr.Name .. "Ammo")
 	if ammodata.Value == 16 then return end 
 	if ammodata.Value <= 0 then
-		print("full reload")
+		--full reload
 		ammodata.Value = 15
 		local ammolabel = plr.PlayerGui.FPSGui.Ammo
 		ammolabel.Text = ammodata.Value .. " / " .. 15
 	elseif ammodata.Value <= 15 and ammodata.Value ~= 0 then
-		print("tactical reload")
+		--tactical reload
 		ammodata.Value = 16
 		local ammolabel = plr.PlayerGui.FPSGui.Ammo
 		ammolabel.Text = ammodata.Value .. " / " .. 15
