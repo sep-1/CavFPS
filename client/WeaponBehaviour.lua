@@ -24,14 +24,7 @@ joint.C0 = CFrame.new(3,-1.5,-2.95) * CFrame.Angles(0,math.pi,0) -- old final va
 joint.Part0 = viewmodel.Head
 joint.Part1 = weapon.Handle
 joint.Parent = viewmodel.Head
---[[
-for i,v in pairs(viewmodel:GetChildren()) do
-	if v:IsA("BasePart") then
-		local charequil = char[v.Name]
-		v.Color = charequil.Color
-	end
-end
---]]
+
 
 local aimCount = 0;
 local offset = weapon.Handle.CFrame:inverse() * CFrame.Angles(math.rad(-2.25),math.pi,0) * weapon.Aim.CFrame
@@ -60,21 +53,24 @@ local function updateArm(key)
 end
 
 
-
+--toggle aim down sights when left click is initiated 
 UIS.InputBegan:Connect(function(inputtype,gameprocessedevent)
 	if inputtype.UserInputType == Enum.UserInputType.MouseButton2 then
 		aimDownSights(true)
 	end
 end)
+-- end aim down sights when left click is released
 UIS.InputEnded:Connect(function(inputtype, gameprocessedevent)
 	if inputtype.UserInputType == Enum.UserInputType.MouseButton2 then
 		aimDownSights(false)
 	end
 end)
-
+-- player death cleanup 
 humanoid.Died:Connect(function()
     viewmodel.Parent = nil
 end)
+
+-- updates the viewmodel to game's runtime 
 game:GetService("RunService").RenderStepped:Connect(function()
 	viewmodel.Head.CFrame = camera.CFrame
 	updateArm("Right")
